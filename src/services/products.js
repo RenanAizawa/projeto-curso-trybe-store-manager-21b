@@ -16,6 +16,23 @@ const getAllService = async () => {
   };
 };
 
+const getByIdService = async (id) => {
+  const result = await productsModel.getByIdModel(id);
+  if (!result) {
+    return (
+      {
+        message: 'Product not found',
+        code: 404,
+      }
+    );
+  }
+  return {
+    result,
+    code: 200,
+  };
+};
+
 module.exports = {
   getAllService,
+  getByIdService,
 };
