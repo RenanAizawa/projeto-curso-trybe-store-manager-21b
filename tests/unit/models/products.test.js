@@ -2,7 +2,7 @@ const sinon = require('sinon');
 const { expect } = require('chai');
 const { products, _products1 } = require('../helper/fakeDB');
 const productsModel = require('../../../src/models/products');
-const conection = require('../../../src/models/conection');
+const connection = require('../../../src/models/conection');
 
 describe('Testando a camada de Models de products', () => {
   beforeEach(sinon.restore)
