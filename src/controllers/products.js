@@ -27,7 +27,22 @@ const getById = async (req, res) => {
   }
 };
 
+const newProduct = async (req, res) => {
+  try {
+    const { name } = req.body;
+    const { code, message, result } = await products.newProductService(name);
+    if (message) {
+      return res.status(code).json({ message });
+    }
+    return res.status(code).json(result);
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({ message: 'Erro na aplicação' });
+  }
+};
+
 module.exports = {
   getAll,
   getById,
+  newProduct,
 };
