@@ -24,6 +24,18 @@ describe('Testando a camada de Services de products', () => {
     })
   });
   describe('testando a função getById', () => {
-    it();
+    it('testando uma chamada bem sucedida', async () => {
+      sinon.stub(productsModel, 'getByIdModel').resolves(fakeId)
+      const getById = await productsService.getByIdService(1)
+      expect(getById.result).to.be.deep.eq(fakeId);
+      expect(getById.code).to.be.eq(200);
+      expect(getById).to.have.keys('code', 'result');
+    });
+    it('testando chamada em caso de falha', async () => {
+      sinon.stub(productsModel, 'getByIdModel').resolves()
+      const getById = await productsService.getByIdService(1)
+      expect(getById.code).to.be.eq(404);
+      expect(getById.message).to.be.eq('Product not found')
+    });
   });
 });
