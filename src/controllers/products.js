@@ -41,8 +41,23 @@ const newProduct = async (req, res) => {
   }
 };
 
+const deleteProduct = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { code, message } = await products.deleteProductService(id);
+    if (message === 'done') {
+      return res.status(code).json();
+    }
+    return res.status(code).json({ message });
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({ message: 'Erro na aplicação' });
+  }
+};
+
 module.exports = {
   getAll,
   getById,
   newProduct,
+  deleteProduct,
 };

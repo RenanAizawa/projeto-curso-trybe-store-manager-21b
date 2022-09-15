@@ -21,6 +21,13 @@ const newProductModel = async (name) => {
   return obg;
 };
 
+const deleteProductModel = async (id) => {
+  await conection.execute('DELETE FROM StoreManager.products AS prod WHERE prod.id = ?', [id]);
+  return {
+    message: 'done',
+  };
+};
+
 // const getNewProduct = async () => {
 //   const [[result]] = await conection
 //     .execute('SELECT id, name FROM StoreManager.products ORDER BY id DESC LIMIT 1');
@@ -37,4 +44,5 @@ module.exports = {
   getByIdModel,
   // newAndGet,
   newProductModel,
+  deleteProductModel,
 };
